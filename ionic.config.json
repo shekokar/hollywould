@@ -1,0 +1,8 @@
+{
+  "name": "Hollywood",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "f40b13bc"
+}

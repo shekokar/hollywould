@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Hollywood",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
