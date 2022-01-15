@@ -7,8 +7,8 @@ export const Keyboard: React.FC = () => {
   return (
         <IonGrid >
           {[...letters].map(row => <IonRow style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            {[...row].map(letter => <IonCol size='auto'>
-            <IonButton strong={true} color='tertiary' fill="outline">{letter}</IonButton>
+            {[...row].map(letter => <IonCol size='1'>
+            <IonButton  strong={true} color='tertiary' fill="outline">{letter}</IonButton>
             </IonCol>)}
           </IonRow>)}
         </IonGrid>

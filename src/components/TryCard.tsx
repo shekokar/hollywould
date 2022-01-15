@@ -1,11 +1,13 @@
 import React from 'react';
 import {IonCard, IonCardContent, IonCardHeader, IonCardTitle,IonItem} from '@ionic/react';
 
+interface TryCardProps {
+  wrong:boolean
+}
 
-
-export const TryCard: React.FC = () => {
+export const TryCard: React.FC<TryCardProps> = ({wrong}) => {
   return (
-        <IonCard color="danger" mode="md" style={{width:'5vw',height:'8vh',maxWidth:'60px',maxHeight:'75px'}}>
+        <IonCard color={wrong?"danger":"success"} mode="md" style={{width:'100%',height:'100%'}}>
         </IonCard>
   );
 };
