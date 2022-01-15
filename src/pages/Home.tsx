@@ -1,4 +1,7 @@
 import MessageListItem from '../components/MessageListItem';
+import {TitleCard} from '../components/TitleCard';
+import { Keyboard } from '../components/Keyboard';
+import { Tries } from '../components/Tries';
 import { useState } from 'react';
 import { Message, getMessages } from '../data/messages';
 import {
@@ -10,12 +13,16 @@ import {
   IonRefresherContent,
   IonTitle,
   IonToolbar,
-  useIonViewWillEnter
+  useIonViewWillEnter,
+  IonGrid,
+  IonCol,
+  IonRow,
+  IonFooter
 } from '@ionic/react';
 import './Home.css';
 
 const Home: React.FC = () => {
-
+  const movie = 'Shawshank Redemption'.toUpperCase();
   const [messages, setMessages] = useState<Message[]>([]);
 
   useIonViewWillEnter(() => {
@@ -33,7 +40,7 @@ const Home: React.FC = () => {
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Inbox</IonTitle>
+          <IonTitle>Hollywood</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -44,15 +51,36 @@ const Home: React.FC = () => {
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">
-              Inbox
+              Hollywood
             </IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        <IonList>
+        {/* <IonList>
           {messages.map(m => <MessageListItem key={m.id} message={m} />)}
-        </IonList>
+        </IonList> */}
+        <Tries/>
+        <br/>
+        <IonGrid style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} className="ion-align-self-center">
+          <IonRow style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} className="ion-align-items-center">
+        {[...movie].map(c => 
+        <IonCol size="auto">
+          {c===' '?'/':<TitleCard character={c.toString()}/>}
+          </IonCol>)}
+        </IonRow>
+        </IonGrid>
+        {/* <h1>Hello World</h1> */}
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <Keyboard/>
+        
       </IonContent>
+      
+        
+      
     </IonPage>
   );
 };
