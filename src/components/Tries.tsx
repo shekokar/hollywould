@@ -9,7 +9,7 @@ interface TriesProps {
 export const Tries: React.FC<TriesProps> = ({wrongCount}) => {
     var cols = [];
 
-    if(cols.length == 0){
+    if(cols.length === 0){
         for(let i=1;i<=9;i++){
             cols.push(<IonCol size='auto'>
             <TryCard wrong={false}/>

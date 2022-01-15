@@ -1,15 +1,12 @@
-import MessageListItem from '../components/MessageListItem';
 import {TitleCard} from '../components/TitleCard';
-//import { Keyboard } from '../components/Keyboard';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css'
 import { Tries } from '../components/Tries';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import { Message, getMessages } from '../data/messages';
 import {
   IonContent,
   IonHeader,
-  IonList,
   IonPage,
   IonRefresher,
   IonRefresherContent,
@@ -50,20 +47,19 @@ const Home: React.FC = () => {
   }
 
   const movie = 'Shawshank Redemption'.toUpperCase();
-  const [messages, setMessages] = useState<Message[]>([]);
   const [ctr,setCtr] = useState(0)
   var characterList:string[] = [];
   
   [...movie].map(character => {
-    if(character!=' ' && !characterList.includes(character))
+    if(character!==' ' && !characterList.includes(character))
       characterList.push(character);
   })
   
 
-  useIonViewWillEnter(() => {
+/*   useIonViewWillEnter(() => {
     const msgs = getMessages();
     setMessages(msgs);
-  });
+  }); */
 
   const refresh = (e: CustomEvent) => {
     setTimeout(() => {
@@ -92,9 +88,6 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        {/* <IonList>
-          {messages.map(m => <MessageListItem key={m.id} message={m} />)}
-        </IonList> */}
         <br/>
         <Tries wrongCount={wrongCount}/>
         <br/>

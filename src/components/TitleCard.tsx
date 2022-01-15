@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonCard, IonCardHeader, IonCardTitle,IonItem} from '@ionic/react';
+import {IonCard, IonCardHeader, IonCardTitle} from '@ionic/react';
 
 interface TitleCardProps {
     character: string,

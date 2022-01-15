@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonCard, IonCardContent, IonCardHeader, IonCardTitle,IonItem} from '@ionic/react';
+import {IonCard} from '@ionic/react';
 
 interface TryCardProps {
   wrong:boolean
