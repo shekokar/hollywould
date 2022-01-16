@@ -53,9 +53,9 @@
  }
  
  .hg-theme-default .hg-button {
-     -webkit-tap-highlight-color: rgb(124, 124, 124);
+     -webkit-tap-highlight-color: rgb(187, 187, 187);
      align-items: center;
-     background: rgb(36, 36, 36);
+     background: rgb(128, 128, 128);
      border-bottom: 0px solid #d83535;
      border-radius: 5px;
      box-shadow: 0 0 3px -1px rgba(0, 0, 0, .3);
@@ -72,7 +72,7 @@
  }
  
  .hg-theme-default .hg-button.hg-activeButton {
-     background: #3a3a3a
+     background: #777777
  }
  
  .hg-theme-default.hg-layout-numeric .hg-button {
