@@ -7,7 +7,12 @@ interface TitleCardProps {
   }
 
 export const TitleCard: React.FC<TitleCardProps> = ({character,exclude}) => {
-  const color = 'AEIOUQ'.includes(character)?'warning':'dark';
+  var color='dark';
+  if('AEIOU'.includes(character))
+    color='warning'
+  else if('1234567890'.includes(character))
+    color='secondary'
+  
   return (
         <IonCard color={color} mode="md" style={{width:'50px',height:'55px', margin:'auto'}}>
             

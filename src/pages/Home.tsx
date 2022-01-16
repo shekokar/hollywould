@@ -2,8 +2,8 @@ import {TitleCard} from '../components/TitleCard';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css'
 import { Tries } from '../components/Tries';
-import {useState } from 'react';
-import { Message, getMessages } from '../data/messages';
+import {useEffect, useState } from 'react';
+import {Movie,getMovie} from '../data/movies';
 import {
   IonContent,
   IonHeader,
@@ -12,7 +12,6 @@ import {
   IonRefresherContent,
   IonTitle,
   IonToolbar,
-  useIonViewWillEnter,
   IonGrid,
   IonCol,
   IonRow,
@@ -26,6 +25,7 @@ const Home: React.FC = () => {
 
   const layout = {
     'default': [
+      '1 2 3 4 5 6 7 8 9 0',
       'Q W E R T Y U I O P',
       'A S D F G H J K L',
       'Z X C V B N M'
@@ -36,9 +36,8 @@ const Home: React.FC = () => {
   const [wrongCount,setWrongCount] = useState(0);
 
   const onKeyPress = (event:string) => {
-    console.log(event)
     setExclude([...exclude,event])
-    if(!movie.includes(event)){
+    if(!movie.title.includes(event)){
       setWrongCount(wrongCount+1);
     }
     else{
@@ -46,20 +45,30 @@ const Home: React.FC = () => {
     }
   }
 
-  const movie = 'Shawshank Redemption'.toUpperCase();
   const [ctr,setCtr] = useState(0)
+  const [movie,setMovie] = useState<Movie>({id:-1,title:''});
   var characterList:string[] = [];
   
-  [...movie].map(character => {
-    if(character!==' ' && !characterList.includes(character))
+  [...movie.title].forEach(character => {
+    if('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(character) && !characterList.includes(character))
       characterList.push(character);
   })
   
+  const cardVal = (e:string) => {
+    if(e===' ')
+      return '/';
+    else if('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(e))
+      return(<TitleCard exclude={exclude} character={e.toString()}/>);
+    else
+      return e;
+  }
 
-/*   useIonViewWillEnter(() => {
-    const msgs = getMessages();
-    setMessages(msgs);
-  }); */
+  useEffect(()=>{
+    var movi = getMovie();
+    movi.title = movi.title.toUpperCase();
+    setMovie(movi);
+  },[])
+
 
   const refresh = (e: CustomEvent) => {
     setTimeout(() => {
@@ -71,7 +80,7 @@ const Home: React.FC = () => {
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Hollywood</IonTitle>
+          <IonTitle>HollyWould</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -83,7 +92,7 @@ const Home: React.FC = () => {
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">
-              Hollywood
+              HollyWould
             </IonTitle>
           </IonToolbar>
         </IonHeader>
@@ -96,27 +105,26 @@ const Home: React.FC = () => {
 
         <IonGrid style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} className="ion-align-self-center">
           <IonRow style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} className="ion-align-items-center">
-        {[...movie].map(c => 
-        <IonCol size="auto">
-          {c===' '?'/':<TitleCard exclude={exclude} character={c.toString()}/>}
+        {[...movie.title].map(c => 
+        <IonCol key={Math.random()} size="auto">
+          {cardVal(c)}
           </IonCol>)}
         </IonRow>
         </IonGrid>
-        {/* <h1>Hello World</h1> */}
         <IonAlert
-          isOpen={wrongCount===9}
+          isOpen={wrongCount===10}
           onDidDismiss={()=>window.location.reload()}
           header='Tough Luck!'
           subHeader='Tries Exceeded'
-          message={`The movie was ${movie}`}
+          message={`The movie was ${movie.title}`}
         />
 
         <IonAlert
-          isOpen={characterList.length===ctr}
+          isOpen={ctr!==0 && characterList.length===ctr}
           onDidDismiss={()=>window.location.reload()}
           header='Congratulations!!'
           subHeader='You got the Movie'
-          message={`The movie was ${movie}`}
+          message={`The movie was ${movie.title}`}
         />
                
       </IonContent>
