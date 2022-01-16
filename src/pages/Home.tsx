@@ -15,7 +15,15 @@ import {
   IonCol,
   IonRow,
   IonFooter,
-  IonAlert
+  IonAlert,
+  IonPopover,
+  IonButton,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonButtons,
+  IonText
 } from '@ionic/react';
 import './Home.css';
 
@@ -80,7 +88,21 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>HollyWould</IonTitle>
-        </IonToolbar>
+        
+        <IonButtons slot='primary'><IonButton fill='clear' shape='round' color='primary' id='trigger-button'>Help</IonButton>
+          <IonPopover trigger='trigger-button'>
+            <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>How to Play</IonCardTitle>
+          </IonCardHeader>
+
+          <IonCardContent> 
+            You have 10 tries to guess the movie name. <IonText color='warning'>Yellow</IonText> represents a vowel. <IonText color='secondary'>Blue</IonText> represents a number. Words are separated by /.
+      </IonCardContent>
+        </IonCard>
+            
+          </IonPopover></IonButtons>
+          </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         
