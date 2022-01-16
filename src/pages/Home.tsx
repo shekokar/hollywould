@@ -1,6 +1,5 @@
 import {TitleCard} from '../components/TitleCard';
 import Keyboard from 'react-simple-keyboard';
-import 'react-simple-keyboard/build/css/index.css'
 import { Tries } from '../components/Tries';
 import {useEffect, useState } from 'react';
 import {Movie,getMovie} from '../data/movies';
